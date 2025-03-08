@@ -1,8 +1,7 @@
 # MobKit
-MobKit (Modern Linux Kernel Rootkit): Designed & Compiled for the latest Linux Kernels.
+MobKit (Modern Linux Kernel Rootkit): Designed & Compiled for the latest Linux Kernels. (Tested on Ubuntu 24.10)
 
 ## Features
-  (Tested on Ubuntu 24.10)
 ## Linux Kernel Rootkit:
   -  Hooks Kill Syscall and provide extra signals to work with.
   -  Hide and Unhide from lsmod.
