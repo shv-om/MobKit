@@ -35,3 +35,7 @@ MobKit (Modern Linux Kernel Rootkit): Designed & Compiled for the latest Linux K
   -  `hsjajsnsjd.py` -> Reverse Shell Payload.
   -  `ahsjendhah.txt` -> Reverse Shell Encoded Hex Bytes.
   -  `dheysjdnsj.py` -> Decodes the Hex Bytes and creates the reverse shell payload file.
+
+### Open for
+  -  New Ideas to enhance MobKit's capabilities.
+  -  New techniques for Payload obfuscation and execution.
