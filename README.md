@@ -28,6 +28,6 @@ MobKit (Modern Linux Kernel Rootkit): Designed & Compiled for the latest Linux K
 
 ## Payloads
   -  The payload associated with the module is for testing purposes only.
-  -  hsjajsnsjd.py -> Reverse Shell Payload.
-  -  ahsjendhah.txt -> Reverse Shell Encoded Hex Bytes.
-  -  dheysjdnsj.py -> Decodes the Hex Bytes and creates the reverse shell payload file.
+  -  `hsjajsnsjd.py` -> Reverse Shell Payload.
+  -  `ahsjendhah.txt` -> Reverse Shell Encoded Hex Bytes.
+  -  `dheysjdnsj.py` -> Decodes the Hex Bytes and creates the reverse shell payload file.
