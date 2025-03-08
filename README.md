@@ -1,7 +1,7 @@
 # MobKit
 MobKit (Modern Linux Kernel Rootkit): Designed & Compiled for the latest Linux Kernels.
 
-# Features
+## Features
 ## Linux Kernel Rootkit:
   -  Hooks Kill Syscall and provide extra signals to work with.
   -  Hide and Unhide from lsmod.
@@ -17,7 +17,7 @@ MobKit (Modern Linux Kernel Rootkit): Designed & Compiled for the latest Linux K
   -  Prevent recursions using the Instruction pointer and Parent ID checks.
   -  Base functionality to Hook multiple syscalls.
 
-# USAGE
+## USAGE
   -  Use the Makefile to build the module. (Compiled Successfully? Proceed)
   -  Install module in target system using command: `sudo insmod mob.ko`
   -  Now if you use command `kill`. Rootkit will hook this and check for the provided signal.
