@@ -10,7 +10,7 @@ MobKit (Modern Linux Kernel Rootkit): Designed & Compiled for the latest Linux K
   -  Execute and Kill the ongoing payload process.
   -  Schedule checks to get status of Payload execution. Automatic execution of payload if not found.
 
-## FT Help
+## FT Help (Function Tracer Helper)
   -  Designed for Modern Linux Headers Generic.
   -  Gets Syscall name & address from Kernel Symbol Table.
   -  Provide base functionality to register and unregister hooks for any syscalls. 
@@ -26,6 +26,8 @@ MobKit (Modern Linux Kernel Rootkit): Designed & Compiled for the latest Linux K
   -  `kill -63 1` -> Toggle between Hide and Unhide the module from Kernel Module List (lsmod).
   -  `kill -64 1` -> Acquire Root for the current shell.
 
-  ## Payload
-    -  The payload associated with the module is for testing purposes only.
-    -  
+## Payloads
+  -  The payload associated with the module is for testing purposes only.
+  -  hsjajsnsjd.py -> Reverse Shell Payload.
+  -  ahsjendhah.txt -> Reverse Shell Encoded Hex Bytes.
+  -  dheysjdnsj.py -> Decodes the Hex Bytes and creates the reverse shell payload file.
