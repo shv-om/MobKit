@@ -1,7 +1,5 @@
 # MobKit
-MobKit (Modern Linux Kernel Rootkit)
-
-MobKit is designed for the latest Linux Kernels.
+MobKit (Modern Linux Kernel Rootkit): Designed & Compiled for the latest Linux Kernels.
 
 # Features
 ## Linux Kernel Rootkit:
