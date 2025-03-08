@@ -18,9 +18,9 @@ MobKit (Modern Linux Kernel Rootkit): Designed & Compiled for the latest Linux K
   -  Base functionality to Hook multiple syscalls.
 
 ## USAGE
-  -  Use the Makefile to build the module. (Compiled Successfully? Proceed)
-    -  Use the same compiler by which the kernel headers were compiled.  eg: `sudo make CC=x86_64-linux-gnu-gcc-14`
-    -  If not available. Install Build Tools using: `sudo apt-get update && sudo apt-get install build-essential`
+  -  Use the Makefile to build the module. (Compiled Successfully? Proceed).
+    -  Use the same compiler by which the kernel headers were compiled.  eg: `sudo make CC=x86_64-linux-gnu-gcc-14`.
+    -  If not available. Install Build Tools using: `sudo apt-get update && sudo apt-get install build-essential`.
   -  Install module in target system using command: `sudo insmod mob.ko`
   -  Now if you use command `kill`. Rootkit will hook this and check for the provided signal.
      `kill <SIG> <PID>`
