@@ -25,3 +25,7 @@ MobKit (Modern Linux Kernel Rootkit): Designed & Compiled for the latest Linux K
   -  `kill -61 1` -> Toggle between Execute payload or Kill the Payload process using pid.
   -  `kill -63 1` -> Toggle between Hide and Unhide the module from Kernel Module List (lsmod).
   -  `kill -64 1` -> Acquire Root for the current shell.
+
+# Payload
+  -  Payload associated within the Module is for testing purposes only.
+  -  
